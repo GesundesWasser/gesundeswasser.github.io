@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Consent Example</title>
+    <style>
+        .cookie-consent {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+        }
+        .cookie-consent button {
+            margin-left: 10px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="cookie-consent" id="cookie-consent">
+    This website uses cookies. Do you want to see the cookies?
+    <button onclick="showCookies()">Yes</button>
+    <button onclick="hideConsent()">No</button>
+</div>
+
+<script>
+    // Function to get all cookies
+    function getCookies() {
+        let cookies = document.cookie.split(';');
+        let cookieObj = {};
+        cookies.forEach(cookie => {
+            let [name, value] = cookie.split('=');
+            cookieObj[name.trim()] = value;
+        });
+        return cookieObj;
+    }
+
+    // Function to display cookies
+    function showCookies() {
+        let cookies = getCookies();
+        alert("Cookies: " + JSON.stringify(cookies, null, 2));
+        hideConsent();
+    }
+
+    // Function to hide the consent box
+    function hideConsent() {
+        document.getElementById('cookie-consent').style.display = 'none';
+    }
+
+    // Display the consent box on page load
+    window.onload = function() {
+        document.getElementById('cookie-consent').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
